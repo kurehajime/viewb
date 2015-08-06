@@ -37,12 +37,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 //exec command
 func cmd(commandString string) string {
 	var command string
+	var op string
 	if runtime.GOOS == "windows" {
 		command = "cmd"
+		op = "/c"
 	} else {
 		command = os.Getenv("SHELL")
+		op = "-c"
 	}
-	out, err := exec.Command(command, "-c", commandString).Output()
+	out, err := exec.Command(command, op, commandString).Output()
 	if err != nil {
 		return string(err.Error())
 	}
