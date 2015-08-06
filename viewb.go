@@ -38,7 +38,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func cmd(commandString string) string {
 	var command string
 	if runtime.GOOS == "windows" {
-		command = "call"
+		command = "cmd"
 	} else {
 		command = os.Getenv("SHELL")
 	}
