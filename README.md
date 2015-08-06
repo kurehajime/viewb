@@ -59,7 +59,7 @@ round-trip min/avg/max/stddev = 60.380/60.380/60.380/0.000 ms
 
 or
 
-build your self.
+build yourself.
 
 ```
 go get -u github.com/kurehajime/viewb
