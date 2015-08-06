@@ -1,2 +1,2 @@
 # viewb
-convert the command to a server
+convert the command to a web server
