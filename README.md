@@ -6,18 +6,6 @@ convert the command to a web server
 
 viewb -p \<PORT\> \<COMMAND\> \<ARGS\>
 
-## How to install
-
-[Download here](https://github.com/kurehajime/viewb/releases/tag/1.0)
-
-or
-
-build your self.
-
-```
-go get -u github.com/kurehajime/viewb
-```
-
 
 ## example
 
@@ -62,4 +50,19 @@ PING 8.8.8.8 (8.8.8.8): 56 data bytes
 1 packets transmitted, 1 packets received, 0.0% packet loss
 round-trip min/avg/max/stddev = 60.380/60.380/60.380/0.000 ms
 ```
+
+
+
+## How to install
+
+[Download here](https://github.com/kurehajime/viewb/releases/tag/1.0)
+
+or
+
+build your self.
+
+```
+go get -u github.com/kurehajime/viewb
+```
+
 
