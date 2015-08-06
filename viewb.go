@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 )
@@ -35,7 +36,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 //exec command
 func cmd(commandString string) string {
-	out, err := exec.Command(os.Getenv("SHELL"), "-c", commandString).Output()
+	var command string
+	if runtime.GOOS == "windows" {
+		command = "call"
+	} else {
+		command = os.Getenv("SHELL")
+	}
+	out, err := exec.Command(command, "-c", commandString).Output()
 	if err != nil {
 		return string(err.Error())
 	}
