@@ -28,7 +28,7 @@ func TestCmd(t *testing.T) {
 	//Command OK?
 	ans := "HelloWorld"
 	res := cmd("echo HelloWorld")
-	if strings.Trim(ans, " \n") != strings.Trim(res, " \n") {
+	if strings.Trim(ans, " \r\n") != strings.Trim(res, " \r\n") {
 		t.Error("cmd Error:", ans, res)
 		return
 	}
