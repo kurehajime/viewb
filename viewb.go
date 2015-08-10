@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
-	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
@@ -31,6 +30,7 @@ func main() {
 
 //handler: command result
 func handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=UTF-8")
 	fmt.Fprint(w, cmd(com))
 }
 
@@ -42,7 +42,7 @@ func cmd(commandString string) string {
 		command = "cmd"
 		op = "/c"
 	} else {
-		command = os.Getenv("SHELL")
+		command = "/bin/sh"
 		op = "-c"
 	}
 	out, err := exec.Command(command, op, commandString).Output()
