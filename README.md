@@ -55,7 +55,7 @@ round-trip min/avg/max/stddev = 60.380/60.380/60.380/0.000 ms
 
 ## How to install
 
-[Download here](https://github.com/kurehajime/viewb/releases/tag/1.0)
+[Download here](https://github.com/kurehajime/viewb/releases/tag/1.2)
 
 or
 
