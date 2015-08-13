@@ -1,6 +1,7 @@
 # viewb
 convert the command to a web server
 
+![viewb](https://cloud.githubusercontent.com/assets/4569916/9249386/589c2126-41ff-11e5-9e6f-b12daa6aadf0.png)
 
 ## How to use
 
