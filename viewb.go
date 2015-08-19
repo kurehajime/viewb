@@ -12,13 +12,16 @@ import (
 
 var (
 	port int
+	user string
+	pass string
 	com  string
 )
 
 func main() {
 	//parse args
 	flag.IntVar(&port, "p", 8080, "port /default:8080")
-	flag.IntVar(&port, "port", 8080, "port /default:8080")
+	flag.StringVar(&user, "user", "", "user (BASIC AUTH)")
+	flag.StringVar(&pass, "pass", "", "pass (BASIC AUTH)")
 	flag.Parse()
 	com = strings.Join(flag.Args(), " ")
 	//start server
@@ -31,6 +34,12 @@ func main() {
 //handler: command result
 func handler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/plain; charset=UTF-8")
+	if auth(r) == false {
+		w.Header().Set("WWW-Authenticate", `Basic realm="MY REALM"`)
+		w.WriteHeader(401)
+		w.Write([]byte("401 Unauthorized\n"))
+		return
+	}
 	fmt.Fprint(w, cmd(com))
 }
 
@@ -50,4 +59,16 @@ func cmd(commandString string) string {
 		return string(err.Error())
 	}
 	return string(out)
+}
+
+//basic auth
+func auth(r *http.Request) bool {
+	if user == "" || pass == "" {
+		return true
+	}
+	_user, _pass, ok := r.BasicAuth()
+	if ok == false {
+		return false
+	}
+	return _user == user && _pass == pass
 }
