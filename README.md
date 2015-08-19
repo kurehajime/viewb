@@ -68,7 +68,8 @@ http://localhost:8080
 Stop: Ctrl+C
 ```
 
-Open in browser http://localhost:8080 
+Open in browser http://localhost:8080  
+And login.
 
 
 ## How to install
