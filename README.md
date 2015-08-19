@@ -73,7 +73,7 @@ Open in browser http://localhost:8080
 
 ## How to install
 
-[Download here](https://github.com/kurehajime/viewb/releases/tag/1.2)
+[Download here](https://github.com/kurehajime/viewb/releases/tag/1.2) (Windows 64bit,MacOSX 64bit,Linux 64bit)
 
 or
 
