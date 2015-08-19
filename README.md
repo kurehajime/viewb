@@ -74,7 +74,7 @@ And login.
 
 ## How to install
 
-[Download here](https://github.com/kurehajime/viewb/releases/tag/1.2) (Windows 64bit,MacOSX 64bit,Linux 64bit)
+[Download here](https://github.com/kurehajime/viewb/releases/tag/1.3)
 
 or
 
