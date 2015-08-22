@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"net/http"
+	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
@@ -28,7 +29,11 @@ func main() {
 	fmt.Println("http://localhost" + ":" + strconv.Itoa(port))
 	fmt.Println("Stop: Ctrl+C")
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":"+strconv.Itoa(port), nil)
+	err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+		os.Exit(1)
+	}
 }
 
 //handler: command result
