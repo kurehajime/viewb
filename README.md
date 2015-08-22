@@ -74,7 +74,7 @@ And login.
 
 ## How to install
 
-[Download here](https://github.com/kurehajime/viewb/releases/tag/1.3)
+[Download here](https://github.com/kurehajime/viewb/releases)
 
 or
 
