@@ -38,7 +38,7 @@ func main() {
 			case "linux":
 				exec.Command("xdg-open", url).Start()
 			case "windows":
-				exec.Command("start", "", url).Start()
+				exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
 			case "darwin":
 				exec.Command("open", url).Start()
 			}
