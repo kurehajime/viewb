@@ -9,6 +9,7 @@ import (
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var (
@@ -16,17 +17,36 @@ var (
 	user string
 	pass string
 	com  string
+	open bool
 )
 
 func main() {
 	//parse args
 	flag.IntVar(&port, "p", 8080, "port /default:8080")
+	flag.BoolVar(&open, "o", false, "open web browser")
 	flag.StringVar(&user, "user", "", "user (BASIC AUTH)")
 	flag.StringVar(&pass, "pass", "", "pass (BASIC AUTH)")
 	flag.Parse()
 	com = strings.Join(flag.Args(), " ")
+	url := "http://localhost" + ":" + strconv.Itoa(port)
+
+	//open web browser
+	go func() {
+		if open == true {
+			time.Sleep(500 * time.Millisecond)
+			switch runtime.GOOS {
+			case "linux":
+				exec.Command("xdg-open", url).Start()
+			case "windows":
+				exec.Command("start", "", url).Start()
+			case "darwin":
+				exec.Command("open", url).Start()
+			}
+		}
+	}()
+
 	//start server
-	fmt.Println("http://localhost" + ":" + strconv.Itoa(port))
+	fmt.Println(url)
 	fmt.Println("Stop: Ctrl+C")
 	http.HandleFunc("/", handler)
 	err := http.ListenAndServe(":"+strconv.Itoa(port), nil)
@@ -34,6 +54,7 @@ func main() {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
+
 }
 
 //handler: command result
