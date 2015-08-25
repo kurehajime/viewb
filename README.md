@@ -1,5 +1,5 @@
 # viewb
-convert the command to a web server
+Convert the command to a web server
 
 ![viewb](https://cloud.githubusercontent.com/assets/4569916/9249386/589c2126-41ff-11e5-9e6f-b12daa6aadf0.png)
 
@@ -9,9 +9,9 @@ convert the command to a web server
 $ viewb  <COMMAND> <ARGS>
 ```
 
-option:  
-  -p=\<PORT\>: port(default:8080)  
-  -o: open web browser  
+Option:  
+  -p=\<PORT\>: Port(default:8080)  
+  -o: Open web browser  
   -user=\<USERNAME\>: Basic Authentication user name  
   -pass=\<PASSWORD\>: Basic Authentication password  
 
@@ -21,14 +21,14 @@ option:
 
 or
 
-build yourself (go lang).
+Build yourself (Go lang).
 
 ```
 go get -u github.com/kurehajime/viewb
 ```
 
 
-## example
+## Example
 
 ##### Example 1 :Command to web server
 
@@ -93,7 +93,7 @@ http://localhost:8080
 Stop: Ctrl+C
 ```
 
-open automatically.
+Open automatically.
 
 
 
