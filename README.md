@@ -11,8 +11,21 @@ $ viewb  <COMMAND> <ARGS>
 
 option:  
   -p=\<PORT\>: port(default:8080)  
+  -o: open web browser  
   -user=\<USERNAME\>: Basic Authentication user name  
   -pass=\<PASSWORD\>: Basic Authentication password  
+
+## How to install
+
+[Download](https://github.com/kurehajime/viewb/releases)
+
+or
+
+build yourself (go lang).
+
+```
+go get -u github.com/kurehajime/viewb
+```
 
 
 ## example
@@ -71,17 +84,17 @@ Stop: Ctrl+C
 Open in browser http://localhost:8080  
 And login.
 
+##### Example 5 :open browser 
 
-## How to install
+```sh
+$ viewb -o echo yah!
 
-[Download here](https://github.com/kurehajime/viewb/releases)
-
-or
-
-build yourself.
-
+http://localhost:8080
+Stop: Ctrl+C
 ```
-go get -u github.com/kurehajime/viewb
-```
+
+open automatically.
+
+
 
 
