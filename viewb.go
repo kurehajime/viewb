@@ -10,6 +10,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"bytes"
+	"golang.org/x/net/html/charset"
+	"golang.org/x/text/transform"
 )
 
 var (
@@ -18,6 +21,7 @@ var (
 	pass string
 	com  string
 	open bool
+	encode string
 )
 
 func main() {
@@ -26,6 +30,8 @@ func main() {
 	flag.BoolVar(&open, "o", false, "open web browser")
 	flag.StringVar(&user, "user", "", "user (BASIC AUTH)")
 	flag.StringVar(&pass, "pass", "", "pass (BASIC AUTH)")
+	flag.StringVar(&encode, "e", "utf-8", "input encoding")
+	
 	flag.Parse()
 	com = strings.Join(flag.Args(), " ")
 	url := "http://localhost" + ":" + strconv.Itoa(port)
@@ -66,7 +72,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("401 Unauthorized\n"))
 		return
 	}
-	fmt.Fprint(w, cmd(com))
+	var text string
+	text , err := transEnc(cmd(com),encode )
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err.Error())
+	}
+	fmt.Fprint(w, text)
 }
 
 //exec command
@@ -97,4 +108,36 @@ func auth(r *http.Request) bool {
 		return false
 	}
 	return _user == user && _pass == pass
+}
+
+//trans encoding   ->    qiita.com/nobuhito/items/ff782f64e32f7ed95e43
+func transEnc(text string, encode string) (string, error) {
+	body := []byte(text)
+	var f []byte
+
+	encodings := []string{"sjis", "utf-8"}
+	if encode != "" {
+		encodings = append([]string{encode}, encodings...)
+	}
+	for _, enc := range encodings {
+		if enc != "" {
+			ee, _ := charset.Lookup(enc)
+			if ee == nil {
+				continue
+			}
+			var buf bytes.Buffer
+			ic := transform.NewWriter(&buf, ee.NewDecoder())
+			_, err := ic.Write(body)
+			if err != nil {
+				continue
+			}
+			err = ic.Close()
+			if err != nil {
+				continue
+			}
+			f = buf.Bytes()
+			break
+		}
+	}
+	return string(f), nil
 }
