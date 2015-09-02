@@ -14,6 +14,8 @@ Option:
   -o: Open web browser  
   -user=\<USERNAME\>: Basic Authentication user name  
   -pass=\<PASSWORD\>: Basic Authentication password  
+  -e=\<ENCODING\>: input encoding  
+
 
 ## How to install
 
