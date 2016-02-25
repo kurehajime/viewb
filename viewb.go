@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
 	"net/http"
@@ -10,17 +11,17 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"bytes"
+
 	"golang.org/x/net/html/charset"
 	"golang.org/x/text/transform"
 )
 
 var (
-	port int
-	user string
-	pass string
-	com  string
-	open bool
+	port   int
+	user   string
+	pass   string
+	com    string
+	open   bool
 	encode string
 )
 
@@ -31,7 +32,7 @@ func main() {
 	flag.StringVar(&user, "user", "", "user (BASIC AUTH)")
 	flag.StringVar(&pass, "pass", "", "pass (BASIC AUTH)")
 	flag.StringVar(&encode, "e", "utf-8", "input encoding")
-	
+
 	flag.Parse()
 	com = strings.Join(flag.Args(), " ")
 	url := "http://localhost" + ":" + strconv.Itoa(port)
@@ -73,7 +74,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var text string
-	text , err := transEnc(cmd(com),encode )
+	text, err := transEnc(cmd(com), encode)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 	}
