@@ -1,4 +1,7 @@
 # viewb
+
+[![CircleCI](https://circleci.com/gh/kurehajime/viewb.svg?style=svg)](https://circleci.com/gh/kurehajime/viewb)
+
 Convert the command to a web server
 
 ![viewb](https://cloud.githubusercontent.com/assets/4569916/9249386/589c2126-41ff-11e5-9e6f-b12daa6aadf0.png)
