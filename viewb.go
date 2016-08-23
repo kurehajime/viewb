@@ -18,6 +18,7 @@ import (
 
 var (
 	port   int
+	head   int
 	user   string
 	pass   string
 	com    string
@@ -27,11 +28,12 @@ var (
 
 func main() {
 	//parse args
-	flag.IntVar(&port, "p", 8080, "port /default:8080")
-	flag.BoolVar(&open, "o", false, "open web browser")
-	flag.StringVar(&user, "user", "", "user (BASIC AUTH)")
-	flag.StringVar(&pass, "pass", "", "pass (BASIC AUTH)")
-	flag.StringVar(&encode, "e", "utf-8", "input encoding")
+	flag.IntVar(&port, "p", 8080, "Port /default:8080")
+	flag.IntVar(&head, "h", 0, "Prints the first N lines.If minus value then prints the last N lines.")
+	flag.BoolVar(&open, "o", false, "Open web browser")
+	flag.StringVar(&user, "user", "", "User (BASIC AUTH)")
+	flag.StringVar(&pass, "pass", "", "Pass (BASIC AUTH)")
+	flag.StringVar(&encode, "e", "utf-8", "Input encoding")
 
 	flag.Parse()
 	com = strings.Join(flag.Args(), " ")
@@ -78,7 +80,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
 	}
-	fmt.Fprint(w, text)
+	arr := strings.Split(text, "\n")
+	if head > 0 && len(arr) > head {
+		fmt.Fprint(w, strings.Join(arr[:head], "\n"))
+
+	} else if head < 0 && len(arr) > -1*head {
+		fmt.Fprint(w, strings.Join(arr[len(arr)+head-1:], "\n"))
+	} else {
+		fmt.Fprint(w, text)
+	}
 }
 
 //exec command

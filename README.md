@@ -14,6 +14,7 @@ $ viewb  <COMMAND> <ARGS>
 
 Option:  
   -p=\<PORT\>: Port(default:8080)  
+  -h: Prints the first N lines.if minus value then prints the last N lines.  
   -o: Open web browser  
   -user=\<USERNAME\>: Basic Authentication user name  
   -pass=\<PASSWORD\>: Basic Authentication password  
