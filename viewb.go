@@ -34,8 +34,17 @@ func main() {
 	flag.StringVar(&user, "user", "", "User (BASIC AUTH)")
 	flag.StringVar(&pass, "pass", "", "Pass (BASIC AUTH)")
 	flag.StringVar(&encode, "e", "utf-8", "Input encoding")
-
+	flag.Usage = func() {
+		fmt.Printf("Convert the command to a web server \n\n")
+		flag.PrintDefaults()
+	}
 	flag.Parse()
+
+	if len(flag.Args()) == 0 {
+		flag.Usage()
+		return
+	}
+
 	com = strings.Join(flag.Args(), " ")
 	url := "http://localhost" + ":" + strconv.Itoa(port)
 
