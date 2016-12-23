@@ -4,3 +4,5 @@ bin/
 *.zip
 
 viewb
+
+.vscode/tasks.json

@@ -72,7 +72,6 @@ func main() {
 		fmt.Fprintln(os.Stderr, err.Error())
 		os.Exit(1)
 	}
-
 }
 
 //handler: command result
@@ -84,7 +83,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("401 Unauthorized\n"))
 		return
 	}
-	var text string
 	text, err := transEnc(cmd(com), encode)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
@@ -92,7 +90,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	arr := strings.Split(text, "\n")
 	if head > 0 && len(arr) > head {
 		fmt.Fprint(w, strings.Join(arr[:head], "\n"))
-
 	} else if head < 0 && len(arr) > -1*head {
 		fmt.Fprint(w, strings.Join(arr[len(arr)+head-1:], "\n"))
 	} else {
