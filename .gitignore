@@ -6,3 +6,4 @@ bin/
 viewb
 
 .vscode/tasks.json
+.DS_Store

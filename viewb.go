@@ -83,6 +83,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("401 Unauthorized\n"))
 		return
 	}
+
+	if strings.Contains(r.URL.Path, "favicon.ico") {
+		w.WriteHeader(404)
+		return
+	}
+
 	text, err := transEnc(cmd(com), encode)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
