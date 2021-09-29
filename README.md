@@ -30,7 +30,7 @@ or
 Build yourself (Go lang).
 
 ```
-go get -u github.com/kurehajime/viewb
+go install github.com/kurehajime/viewb@latest
 ```
 
 
